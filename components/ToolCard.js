@@ -6,11 +6,11 @@ import {
 } from 'react-native';
 import { observer } from "mobx-react";
 
-const ToolCard = observer(({ title, description }) => {
+const ToolCard = observer(({ title }) => {
   return (
     <View style={styles.container}>
       <Text style={styles.title}>{title}</Text>
-      <Text style={styles.description}>{description}</Text>
+      <View style={styles.bottomLine}></View>
     </View>
   )
 });
@@ -21,14 +21,19 @@ const styles = StyleSheet.create({
     backgroundColor: "#fff",
     flexDirection: "column",
     justifyContent: "flex-start",
-    alignItems: "flex-start"
+    alignItems: "flex-start",
   },
   title: {
-    fontSize: 30,
+    fontSize: 23,
     fontWeight: "300",
+    paddingTop: 20,
+    paddingLeft: 20,
   },
-  description: {
-    fontSize: 15,
+  bottomLine: {
+    borderBottomWidth: 0.5,
+    width: "60%",
+    marginTop: 20,
+    marginLeft: 23
   }
 });
 

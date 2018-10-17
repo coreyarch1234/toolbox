@@ -3,15 +3,15 @@ import { Platform } from 'react-native';
 import { createStackNavigator, createBottomTabNavigator } from 'react-navigation';
 
 import TabBarIcon from '../components/TabBarIcon';
-import ToolScreen from '../screens/ToolScreen';
-import LinksScreen from '../screens/LinksScreen';
+import ToolListScreen from '../screens/ToolStack/ToolListScreen';
+import CreateToolScreen from '../screens/CreateToolStack/CreateToolScreen';
 import SettingsScreen from '../screens/SettingsScreen';
 
-const HomeStack = createStackNavigator({
-  Home: ToolScreen,
+const ToolStack = createStackNavigator({
+  ToolList: ToolListScreen,
 });
 
-HomeStack.navigationOptions = {
+ToolStack.navigationOptions = {
   tabBarLabel: 'Tools',
   tabBarIcon: ({ focused }) => (
     <TabBarIcon
@@ -25,11 +25,11 @@ HomeStack.navigationOptions = {
   ),
 };
 
-const LinksStack = createStackNavigator({
-  Links: LinksScreen,
+const CreateToolStack = createStackNavigator({
+  CreateTool: CreateToolScreen,
 });
 
-LinksStack.navigationOptions = {
+CreateToolStack.navigationOptions = {
   tabBarLabel: 'Add',
   tabBarIcon: ({ focused }) => (
     <TabBarIcon
@@ -54,7 +54,7 @@ SettingsStack.navigationOptions = {
 };
 
 export default createBottomTabNavigator({
-  HomeStack,
-  LinksStack,
+  ToolStack,
+  CreateToolStack,
   SettingsStack,
 });

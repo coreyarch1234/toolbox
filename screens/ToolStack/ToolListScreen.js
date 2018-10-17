@@ -4,13 +4,12 @@ import {
   Text,
   View,
 } from 'react-native';
-import ToolCard from '../components/ToolCard';
+import ToolCard from '../../components/ToolCard';
+
 //Tool Screen. This will be the list of technique posts
-export default class ToolScreen extends React.Component {
+export default class ToolListScreen extends React.Component {
   static navigationOptions = {
-    header: (
-      <View style={{height: 100, backgroundColor: "green"}}></View>
-    ),
+    title: 'Tool Box',
   };
 
   render() {
@@ -18,7 +17,6 @@ export default class ToolScreen extends React.Component {
       <View style={styles.container}>
         <ToolCard
           title={"This is my first post"}
-          description={"This is the description of the post"}
         />
       </View>
     );
@@ -31,6 +29,5 @@ const styles = StyleSheet.create({
     backgroundColor: "#fff",
     flexDirection: "column",
     justifyContent: "flex-start",
-    alignItems: "flex-start"
   },
 });
