@@ -1,5 +1,5 @@
 import React from 'react';
-import { ScrollView, StyleSheet } from 'react-native';
+import { ScrollView, StyleSheet, View, TextInput, KeyboardAvoidingView, Platform } from 'react-native';
 import { ExpoLinksView } from '@expo/samples';
 
 export default class CreateToolScreen extends React.Component {
@@ -10,9 +10,34 @@ export default class CreateToolScreen extends React.Component {
   render() {
     return (
       <ScrollView style={styles.container}>
-        {/* Go ahead and delete ExpoLinksView and replace it with your
-           * content, we just wanted to provide you with some helpful links */}
-        <ExpoLinksView />
+        <KeyboardAvoidingView key="footer" behavior={Platform.OS === "ios" ? "padding" : null}>
+          <TextInput
+            name={'Title Input'}
+            underlineColorAndroid={"rgba(0,0,0,0)"}
+            style={styles.titleInput}
+            placeholder={'What is this technique called?'}
+            placeholderTextColor={"rgb(150, 150, 150)"}
+            returnKeyType="next"
+            onSubmitEditing={() => console.log('handling submit')}
+            onChangeText={() => console.log('handling on change')}
+            multiline={true}
+            blurOnSubmit={true}
+            autoFocus
+          />
+          <TextInput
+            name={'Description Input'}
+            underlineColorAndroid={"rgba(0,0,0,0)"}
+            style={styles.descriptionInput}
+            placeholder={'How does it work?'}
+            placeholderTextColor={"rgb(150, 150, 150)"}
+            returnKeyType="next"
+            onSubmitEditing={() => console.log('handling submit')}
+            onChangeText={() => console.log('handling on change')}
+            multiline={true}
+            blurOnSubmit={true}
+            autoFocus
+          />
+          </KeyboardAvoidingView>
       </ScrollView>
     );
   }
@@ -21,7 +46,33 @@ export default class CreateToolScreen extends React.Component {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    paddingTop: 15,
     backgroundColor: '#fff',
   },
+  titleInput: {
+    width: "100%",
+    color: "black",
+    backgroundColor: "white",
+    fontSize: 30,
+    paddingLeft: 15,
+    paddingTop: 15,
+    paddingBottom: 50,
+    paddingRight: 15,
+    borderBottomWidth: 0
+  },
+  descriptionInput: {
+    width: "100%",
+    color: "black",
+    maxHeight: 120,
+    minHeight: 90,
+    fontSize: 20,
+    backgroundColor: "white",
+    borderTopWidth: 1,
+    borderTopColor: "rgb(230, 230, 230)",
+    paddingLeft: 15,
+    paddingTop: 15,
+    paddingBottom: 15,
+    paddingRight: 15,
+    borderBottomWidth: 0,
+    borderTopWidth: 0
+  }
 });
