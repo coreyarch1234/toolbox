@@ -1,23 +1,25 @@
 import React from 'react';
-import { ScrollView, StyleSheet, View, Text, TextInput, KeyboardAvoidingView, Platform } from 'react-native';
-import HeaderButton from '../../components/HeaderButton';
-import { ExpoLinksView } from '@expo/samples';
+import {
+  StyleSheet,
+  View,
+  Text,
+  TextInput,
+  KeyboardAvoidingView,
+  Platform } from 'react-native';
+import HeaderButton from '../components/HeaderButton';
 
-export default class CreateToolScreen extends React.Component {
-  static navigationOptions = {
-    headerRight: (
-      <HeaderButton
-        buttonStyle={{marginRight: 30}}
-        textStyle={{fontSize: 16, fontWeight: "600"}}
-        text={'Post'}
-        action={() => console.log('post button was pressed')}
-      />
-    )
-  };
-
+export default class CreateToolModal extends React.Component {
   render() {
     return (
-      <ScrollView style={styles.container}>
+      <View style={styles.container}>
+        <View style={styles.modalHeader}>
+          <HeaderButton
+            buttonStyle={{marginRight: 30}}
+            textStyle={{fontSize: 16, fontWeight: "600"}}
+            text={'Post'}
+            action={() => this.props.navigation.navigate('ToolList')}
+          />
+        </View>
         <KeyboardAvoidingView key="footer" behavior={Platform.OS === "ios" ? "padding" : null}>
           <TextInput
             name={'Title Input'}
@@ -46,7 +48,7 @@ export default class CreateToolScreen extends React.Component {
             autoFocus
           />
           </KeyboardAvoidingView>
-      </ScrollView>
+      </View>
     );
   }
 }
@@ -54,7 +56,12 @@ export default class CreateToolScreen extends React.Component {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
+    paddingTop: 50,
     backgroundColor: '#fff',
+  },
+  modalHeader: {
+    flexDirection: "row",
+    justifyContent: "flex-end"
   },
   titleInput: {
     width: "100%",

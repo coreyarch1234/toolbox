@@ -4,14 +4,25 @@ import { createStackNavigator, createBottomTabNavigator } from 'react-navigation
 
 import TabBarIcon from '../components/TabBarIcon';
 import ToolListScreen from '../screens/ToolStack/ToolListScreen';
-import CreateToolScreen from '../screens/CreateToolStack/CreateToolScreen';
+import CreateToolModal from '../CreateToolModal';
 import SettingsScreen from '../screens/SettingsScreen';
 
-const ToolStack = createStackNavigator({
-  ToolList: ToolListScreen,
-});
+const ToolListStack = createStackNavigator({
+    ToolList: ToolListScreen,
+  });
 
-ToolStack.navigationOptions = {
+const RootToolStack = createStackNavigator(
+  {
+    ToolList: ToolListStack,
+    CreateTool: CreateToolModal
+  },
+  {
+    mode: 'card',
+    headerMode: 'none',
+  }
+);
+
+RootToolStack.navigationOptions = {
   tabBarLabel: 'Tools',
   tabBarIcon: ({ focused }) => (
     <TabBarIcon
@@ -21,20 +32,6 @@ ToolStack.navigationOptions = {
           ? `ios-information-circle${focused ? '' : '-outline'}`
           : 'md-information-circle'
       }
-    />
-  ),
-};
-
-const CreateToolStack = createStackNavigator({
-  CreateTool: CreateToolScreen,
-});
-
-CreateToolStack.navigationOptions = {
-  tabBarLabel: 'Add',
-  tabBarIcon: ({ focused }) => (
-    <TabBarIcon
-      focused={focused}
-      name={Platform.OS === 'ios' ? `ios-link${focused ? '' : '-outline'}` : 'md-link'}
     />
   ),
 };
@@ -54,7 +51,6 @@ SettingsStack.navigationOptions = {
 };
 
 export default createBottomTabNavigator({
-  ToolStack,
-  CreateToolStack,
+  RootToolStack,
   SettingsStack,
 });
