@@ -10,6 +10,7 @@ export default class App extends React.Component {
   @observable isLoadingComplete = false;
 
   render() {
+    console.disableYellowBox = true;
     if (!this.isLoadingComplete && !this.props.skipLoadingScreen) {
       return (
         <AppLoading

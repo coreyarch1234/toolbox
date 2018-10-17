@@ -1,10 +1,18 @@
 import React from 'react';
-import { ScrollView, StyleSheet, View, TextInput, KeyboardAvoidingView, Platform } from 'react-native';
+import { ScrollView, StyleSheet, View, Text, TextInput, KeyboardAvoidingView, Platform } from 'react-native';
+import HeaderButton from '../../components/HeaderButton';
 import { ExpoLinksView } from '@expo/samples';
 
 export default class CreateToolScreen extends React.Component {
   static navigationOptions = {
-    title: 'Create',
+    headerRight: (
+      <HeaderButton
+        buttonStyle={{marginRight: 30}}
+        textStyle={{fontSize: 16, fontWeight: "600"}}
+        text={'Post'}
+        action={() => console.log('post button was pressed')}
+      />
+    )
   };
 
   render() {
@@ -17,7 +25,7 @@ export default class CreateToolScreen extends React.Component {
             style={styles.titleInput}
             placeholder={'What is this technique called?'}
             placeholderTextColor={"rgb(150, 150, 150)"}
-            returnKeyType="next"
+            returnKeyType="done"
             onSubmitEditing={() => console.log('handling submit')}
             onChangeText={() => console.log('handling on change')}
             multiline={true}
@@ -30,7 +38,7 @@ export default class CreateToolScreen extends React.Component {
             style={styles.descriptionInput}
             placeholder={'How does it work?'}
             placeholderTextColor={"rgb(150, 150, 150)"}
-            returnKeyType="next"
+            returnKeyType="done"
             onSubmitEditing={() => console.log('handling submit')}
             onChangeText={() => console.log('handling on change')}
             multiline={true}
@@ -64,7 +72,7 @@ const styles = StyleSheet.create({
     color: "black",
     maxHeight: 120,
     minHeight: 90,
-    fontSize: 20,
+    fontSize: 18,
     backgroundColor: "white",
     borderTopWidth: 1,
     borderTopColor: "rgb(230, 230, 230)",
@@ -74,5 +82,5 @@ const styles = StyleSheet.create({
     paddingRight: 15,
     borderBottomWidth: 0,
     borderTopWidth: 0
-  }
+  },
 });
