@@ -1,4 +1,4 @@
-import { observable, action, runInAction, computed } from "mobx";
+import { observable, action, computed } from "mobx";
 import { AsyncStorage } from "react-native";
 
 
@@ -7,9 +7,13 @@ class ToolsStore {
   toolsMap = observable.map({}, { deep: false });
 
   @action
-  createTool = (tool) => {
+  createTool = async (tool) => {
     try {
-      this.toolsMap.set(Math.floor((Math.random() * 100) + 1), tool);
+      const randId = Math.floor((Math.random() * 100) + 1);
+      tool.id = randId;
+      this.toolsMap.set(randId, tool);
+
+      return this.getToolById(randId);
     } catch (error) {
         console.log('error saving tool',error);
     }
@@ -17,12 +21,16 @@ class ToolsStore {
 
   @computed
   get toolsArray() {
-    return [...this.toolsMap.values()];
+    return [...this.toolsMap.values()] || [];
+  }
+
+  getToolById(toolId) {
+    return this.toolsMap.get(toolId);
   }
 
   // create tool here by taking tool object and posting to backend
   // fetch tools here using backend fetch route
- }
+}
 
 const toolsStore = new ToolsStore();
 

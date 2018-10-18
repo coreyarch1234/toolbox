@@ -6,10 +6,40 @@ import {
   TextInput,
   KeyboardAvoidingView,
   Platform } from 'react-native';
+import { observable, action, computed } from "mobx";
+import { observer } from "mobx-react";
 import HeaderButton from '../components/HeaderButton';
+import { isStringNotEmpty } from "../utils/validateStringUtils";
+import toolsStore from "../stores/ToolsStore";
 
-export default class CreateToolModal extends React.Component {
-  
+@observer
+class CreateToolModal extends React.Component {
+  @observable tool;
+  @observable title;
+  @observable description;
+
+  @action
+  handlePost = async () => {
+    if (isStringNotEmpty(this.title) && isStringNotEmpty(this.description)) {
+      try {
+        this.tool = {
+          title: this.title,
+          description: this.description
+        }
+        const createdTool = await toolsStore.createTool(this.tool);
+
+        if (createdTool) {
+          this.props.navigation.navigate('ToolList')
+        } else {
+            throw new Error('Did not create tool successfully')
+        }
+
+      } catch (err) {
+          console.error('Error while creating tool', err);
+      }
+    }
+  }
+
   render() {
     return (
       <View style={styles.container}>
@@ -18,7 +48,7 @@ export default class CreateToolModal extends React.Component {
             buttonStyle={{marginRight: 30}}
             textStyle={{fontSize: 16, fontWeight: "600"}}
             text={'Post'}
-            action={() => this.props.navigation.navigate('ToolList')}
+            action={() => this.handlePost()}
           />
         </View>
         <KeyboardAvoidingView key="footer" behavior={Platform.OS === "ios" ? "padding" : null}>
@@ -29,8 +59,7 @@ export default class CreateToolModal extends React.Component {
             placeholder={'What is this technique called?'}
             placeholderTextColor={"rgb(150, 150, 150)"}
             returnKeyType="done"
-            onSubmitEditing={() => console.log('handling submit')}
-            onChangeText={() => console.log('handling on change')}
+            onChangeText={title => (this.title = title)}
             multiline={true}
             blurOnSubmit={true}
             autoFocus
@@ -42,8 +71,7 @@ export default class CreateToolModal extends React.Component {
             placeholder={'How does it work?'}
             placeholderTextColor={"rgb(150, 150, 150)"}
             returnKeyType="done"
-            onSubmitEditing={() => console.log('handling submit')}
-            onChangeText={() => console.log('handling on change')}
+            onChangeText={description => (this.description = description)}
             multiline={true}
             blurOnSubmit={true}
             autoFocus
@@ -92,3 +120,5 @@ const styles = StyleSheet.create({
     borderTopWidth: 0
   },
 });
+
+export default CreateToolModal;

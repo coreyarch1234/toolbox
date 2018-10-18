@@ -3,11 +3,13 @@ import {
   StyleSheet,
   Text,
   View,
+  FlatList
 } from 'react-native';
 import { observer } from "mobx-react";
 import { observable, action, computed } from "mobx";
 import HeaderButton from '../../components/HeaderButton';
 import ToolCard from '../../components/ToolCard';
+import toolsStore from "../../stores/ToolsStore";
 
 //Tool Screen. This will be the list of technique posts
 @observer
@@ -25,10 +27,16 @@ export default class ToolListScreen extends React.Component {
   });
 
   render() {
+    const { toolsArray } = toolsStore;
+
+    console.log('new tool');
     return (
       <View style={styles.container}>
-        <ToolCard
-          title={"This is my first post"}
+        <FlatList
+          data={toolsArray}
+          ListEmptyComponent={<ToolCard title={'No Tools'} />}
+          keyExtractor={tool => String(tool.id)}
+          renderItem={({ item }) => <ToolCard title={item.title} />}
         />
       </View>
     );
