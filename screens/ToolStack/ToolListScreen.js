@@ -29,12 +29,11 @@ export default class ToolListScreen extends React.Component {
   render() {
     const { toolsArray } = toolsStore;
 
-    console.log('new tool');
     return (
       <View style={styles.container}>
         <FlatList
           data={toolsArray}
-          ListEmptyComponent={<ToolCard title={'No Tools'} />}
+          ListEmptyComponent={<ToolCard title={'Chessboard Analogy'} description={'Think of your thoughts and feelings as chess pieces on a chessboard. Think of the white pieces as the thoughts and feelings you want (e.g., "confidence", “happiness”, “self-esteem”), and the black pieces as the thoughts and feelings'}/>}
           keyExtractor={tool => String(tool.id)}
           renderItem={({ item }) => <ToolCard title={item.title} />}
         />

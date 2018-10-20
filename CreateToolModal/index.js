@@ -45,6 +45,12 @@ class CreateToolModal extends React.Component {
       <View style={styles.container}>
         <View style={styles.modalHeader}>
           <HeaderButton
+            buttonStyle={{marginLeft: 15}}
+            textStyle={{fontSize: 16, fontWeight: "600", top: 3}}
+            text={'Cancel'}
+            action={() => this.props.navigation.navigate('ToolList')}
+          />
+          <HeaderButton
             buttonStyle={{marginRight: 30}}
             textStyle={{fontSize: 16, fontWeight: "600"}}
             text={'Post'}
@@ -56,7 +62,7 @@ class CreateToolModal extends React.Component {
             name={'Title Input'}
             underlineColorAndroid={"rgba(0,0,0,0)"}
             style={styles.titleInput}
-            placeholder={'What is this technique called?'}
+            placeholder={'Name this advice or technique.'}
             placeholderTextColor={"rgb(150, 150, 150)"}
             returnKeyType="done"
             onChangeText={title => (this.title = title)}
@@ -90,7 +96,7 @@ const styles = StyleSheet.create({
   },
   modalHeader: {
     flexDirection: "row",
-    justifyContent: "flex-end"
+    justifyContent: "space-between"
   },
   titleInput: {
     width: "100%",
@@ -98,7 +104,7 @@ const styles = StyleSheet.create({
     backgroundColor: "white",
     fontSize: 30,
     paddingLeft: 15,
-    paddingTop: 15,
+    paddingTop: 35,
     paddingBottom: 50,
     paddingRight: 15,
     borderBottomWidth: 0
