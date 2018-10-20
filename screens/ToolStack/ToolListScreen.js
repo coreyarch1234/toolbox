@@ -35,7 +35,7 @@ export default class ToolListScreen extends React.Component {
           data={toolsArray}
           ListEmptyComponent={<ToolCard title={'Chessboard Analogy'} description={'Think of your thoughts and feelings as chess pieces on a chessboard. Think of the white pieces as the thoughts and feelings you want (e.g., "confidence", “happiness”, “self-esteem”), and the black pieces as the thoughts and feelings'}/>}
           keyExtractor={tool => String(tool.id)}
-          renderItem={({ item }) => <ToolCard title={item.title} />}
+          renderItem={({ item }) => <ToolCard title={item.title} description={item.description}/>}
         />
       </View>
     );

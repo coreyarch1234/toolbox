@@ -114,7 +114,7 @@ const styles = StyleSheet.create({
     color: "black",
     maxHeight: 120,
     minHeight: 90,
-    fontSize: 18,
+    fontSize: 23,
     backgroundColor: "white",
     borderTopWidth: 1,
     borderTopColor: "rgb(230, 230, 230)",
