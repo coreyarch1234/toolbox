@@ -24,7 +24,7 @@ class ToolsStore {
     return [...this.toolsMap.values()] || [];
   }
 
-  getToolById(toolId) {
+  getToolById = toolId => {
     return this.toolsMap.get(toolId);
   }
 

@@ -6,10 +6,9 @@ import {
   FlatList
 } from 'react-native';
 import { observer } from "mobx-react";
-import { observable, action, computed } from "mobx";
 import HeaderButton from '../../components/HeaderButton';
-import ToolCard from '../../components/ToolCard';
 import toolsStore from "../../stores/ToolsStore";
+import ToolList from "../../components/ToolList";
 
 //Tool Screen. This will be the list of technique posts
 @observer
@@ -27,16 +26,11 @@ export default class ToolListScreen extends React.Component {
   });
 
   render() {
-    const { toolsArray } = toolsStore;
-
+    const { navigation } = this.props;
+    // console.log('in tool list screen navigation',navigation)
     return (
       <View style={styles.container}>
-        <FlatList
-          data={toolsArray}
-          ListEmptyComponent={<ToolCard title={'Chessboard Analogy'} description={'Think of your thoughts and feelings as chess pieces on a chessboard. Think of the white pieces as the thoughts and feelings you want (e.g., "confidence", “happiness”, “self-esteem”), and the black pieces as the thoughts and feelings'}/>}
-          keyExtractor={tool => String(tool.id)}
-          renderItem={({ item }) => <ToolCard title={item.title} description={item.description}/>}
-        />
+        <ToolList navigation={navigation} />
       </View>
     );
   }

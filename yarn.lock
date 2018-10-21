@@ -4051,9 +4051,9 @@ mobx-react@^5.2.8:
     hoist-non-react-statics "^2.5.0"
     react-lifecycles-compat "^3.0.2"
 
-mobx@^5.5.0:
-  version "5.5.0"
-  resolved "https://registry.yarnpkg.com/mobx/-/mobx-5.5.0.tgz#a29f6a7526eed28edcd3f0e921a1edaa8bb22575"
+mobx@5.5.1:
+  version "5.5.1"
+  resolved "https://registry.yarnpkg.com/mobx/-/mobx-5.5.1.tgz#cd006b46085f6e3a6c96b183583d2ee907d37525"
 
 morgan@^1.9.0:
   version "1.9.1"

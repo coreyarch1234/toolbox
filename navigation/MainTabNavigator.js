@@ -4,17 +4,19 @@ import { createStackNavigator, createBottomTabNavigator } from 'react-navigation
 
 import TabBarIcon from '../components/TabBarIcon';
 import ToolListScreen from '../screens/ToolStack/ToolListScreen';
+import ToolDetailScreen from '../screens/ToolDetailStack/ToolDetailScreen';
 import CreateToolModal from '../CreateToolModal';
 import SettingsScreen from '../screens/SettingsScreen';
 
 const ToolListStack = createStackNavigator({
     ToolList: ToolListScreen,
+    ToolDetail: ToolDetailScreen,
   });
 
 const RootToolStack = createStackNavigator(
   {
     ToolList: ToolListStack,
-    CreateTool: CreateToolModal
+    CreateTool: CreateToolModal,
   },
   {
     mode: 'card',
