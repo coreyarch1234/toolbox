@@ -26,6 +26,7 @@ class CreateToolModal extends React.Component {
           title: this.title,
           description: this.description
         }
+        
         const createdTool = await toolsStore.createTool(this.tool);
 
         if (createdTool) {

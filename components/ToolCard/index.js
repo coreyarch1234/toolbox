@@ -13,15 +13,12 @@ class ToolCard extends React.Component {
 
   _handlePress = () => {
     const { tool, navigation } = this.props;
-    // console.log('handling press tool', tool)
-    // console.log('handling press navigation.navigate',navigation.navigate)
-    console.log(navigation.navigate)
     navigation.navigate('ToolDetail', {toolId: tool.id});
   }
 
   render() {
     const { title, description } = this.props.tool;
-
+    
     return (
       <TouchableOpacity
         style={styles.container}

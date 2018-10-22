@@ -1,6 +1,6 @@
 import { observable, action, computed } from "mobx";
 import { AsyncStorage } from "react-native";
-
+import { createTool } from "../services/transportLayer";
 
 class ToolsStore {
   // will be an API call
@@ -9,11 +9,12 @@ class ToolsStore {
   @action
   createTool = async (tool) => {
     try {
-      const randId = Math.floor((Math.random() * 100) + 1);
-      tool.id = randId;
-      this.toolsMap.set(randId, tool);
+      const createdTool = await createTool();
 
-      return this.getToolById(randId);
+      this.toolsMap.set(createdTool.id, createdTool);
+
+      return this.getToolById(createdTool.id);
+      
     } catch (error) {
         console.log('error saving tool',error);
     }

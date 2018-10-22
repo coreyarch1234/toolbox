@@ -14,9 +14,10 @@ class ToolDetailScreen extends React.Component {
 
   tool() {
       const { navigation } = this.props;
+
       const toolId = navigation.getParam("toolId");
-      const toolItem = toolsStore.getToolById(toolId);
-      return toolItem
+
+      return toolsStore.getToolById(toolId);
   }
 
   render() {

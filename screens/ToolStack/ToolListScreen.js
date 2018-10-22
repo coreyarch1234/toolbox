@@ -27,7 +27,6 @@ export default class ToolListScreen extends React.Component {
 
   render() {
     const { navigation } = this.props;
-    // console.log('in tool list screen navigation',navigation)
     return (
       <View style={styles.container}>
         <ToolList navigation={navigation} />
