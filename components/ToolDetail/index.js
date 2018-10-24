@@ -5,11 +5,16 @@ import {
   View,
   TouchableOpacity
 } from 'react-native';
+import toolsStore from "../../stores/ToolsStore";
 
 class ToolDetail extends React.Component {
 
   render() {
-    const { title, description } = this.props.tool;
+    const { navigation } = this.props;
+
+    const { toolId } = navigation.state.params;
+
+    const { title, description } = toolsStore.getToolById(toolId);
 
     return (
       <View style={styles.container}>
@@ -24,8 +29,6 @@ const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: "#fff",
     flexDirection: "column",
-    // justifyContent: "flex-start",
-    // alignItems: "flex-start",
   },
   title: {
     fontSize: 23,

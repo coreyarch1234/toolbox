@@ -14,7 +14,7 @@ class ToolsStore {
       this.toolsMap.set(createdTool.id, createdTool);
 
       return this.getToolById(createdTool.id);
-      
+
     } catch (error) {
         console.log('error saving tool',error);
     }
@@ -29,8 +29,6 @@ class ToolsStore {
     return this.toolsMap.get(toolId);
   }
 
-  // create tool here by taking tool object and posting to backend
-  // fetch tools here using backend fetch route
 }
 
 const toolsStore = new ToolsStore();

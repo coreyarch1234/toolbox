@@ -18,7 +18,7 @@ class ToolCard extends React.Component {
 
   render() {
     const { title, description } = this.props.tool;
-    
+
     return (
       <TouchableOpacity
         style={styles.container}
